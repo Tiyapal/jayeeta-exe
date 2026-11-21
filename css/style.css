@@ -1,0 +1,945 @@
+/* =========================================
+   JAYEETA.EXE
+   RETRO BARBIE DESKTOP PORTFOLIO
+========================================= */
+
+/* ---------- COLOURS ---------- */
+
+:root {
+    --pink: #f5c5dc;
+    --light-pink: #ffeaf4;
+    --deep-pink: #d77eae;
+    --lavender: #e6d9f5;
+    --light-lavender: #f4edfc;
+    --cream: #fffaf2;
+    --plum: #70466f;
+    --dark-plum: #4d3155;
+    --white: #ffffff;
+    --window-border: #c58caf;
+    --shadow: rgba(91, 49, 89, 0.2);
+}
+
+/* ---------- GENERAL ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: var(--plum);
+    background: var(--light-pink);
+    overflow-x: hidden;
+}
+
+button {
+    font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--deep-pink);
+    outline-offset: 4px;
+}
+
+a {
+    color: #a34d91;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   WELCOME SCREEN
+========================================= */
+
+#welcome-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8dce9;
+    background-image:
+        radial-gradient(#ffffff 1.5px, transparent 1.5px),
+        linear-gradient(135deg, #f8dce9, #e8dafa);
+    background-size: 22px 22px, cover;
+}
+
+.welcome-window {
+    width: min(440px, 100%);
+    overflow: hidden;
+    border: 2px solid #c58caf;
+    border-radius: 12px;
+    background: var(--cream);
+    box-shadow: 8px 8px 0 rgba(118, 70, 112, 0.18);
+}
+
+.window-header {
+    min-height: 38px;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: var(--dark-plum);
+    font-size: 13px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #f4c8df, #e6d5f6);
+    border-bottom: 1px solid #d4a5c8;
+}
+
+.welcome-version {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.welcome-content {
+    padding: 38px 25px;
+    text-align: center;
+}
+
+.welcome-decoration {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: var(--deep-pink);
+}
+
+.welcome-content h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: clamp(27px, 6vw, 40px);
+    letter-spacing: 3px;
+    color: var(--dark-plum);
+}
+
+.welcome-content>p {
+    margin: 12px 0 25px;
+    font-size: 14px;
+}
+
+.loading-bar {
+    height: 13px;
+    margin: 20px 0;
+    overflow: hidden;
+    border: 1px solid #d1a4c7;
+    border-radius: 20px;
+    background: #f6e6f0;
+}
+
+.loading-progress {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #df91bd, #b99cda);
+    animation: loading 2s ease-in-out infinite alternate;
+}
+
+@keyframes loading {
+    from {
+        width: 25%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+#enter-button {
+    padding: 12px 24px;
+    border: 2px solid #bd83b2;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f8d4e8, #e8d9fa);
+    color: var(--dark-plum);
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 3px 4px 0 rgba(112, 70, 111, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#enter-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 3px 7px 0 rgba(112, 70, 111, 0.2);
+}
+
+.welcome-content .welcome-small {
+    margin: 20px 0 0;
+    font-size: 11px;
+    color: #a17b9c;
+}
+
+
+/* =========================================
+   DESKTOP BACKGROUND
+========================================= */
+
+#desktop {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: none;
+    padding: 22px 30px 65px;
+    overflow: hidden;
+    background-color: #f7dce9;
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.65) 1px, transparent 1px),
+        linear-gradient(135deg, #f8e3ee, #eadff8);
+    background-size: 20px 20px, cover;
+}
+
+/* Decorative hearts and sparkles */
+
+.desktop-decorations {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.desktop-decorations span {
+    position: absolute;
+    color: #d77ac1;
+    opacity: 0.65;
+    font-size: 22px;
+    text-shadow: 0 2px 5px rgba(255, 255, 255, 0.9);
+}
+
+.desktop-decorations span:nth-child(1) {
+    top: 8%;
+    left: 12%;
+}
+
+.desktop-decorations span:nth-child(2) {
+    top: 22%;
+    left: 47%;
+    color: #ed8fba;
+}
+
+.desktop-decorations span:nth-child(3) {
+    top: 12%;
+    right: 14%;
+}
+
+.desktop-decorations span:nth-child(4) {
+    top: 40%;
+    left: 8%;
+    color: #b58bdc;
+}
+
+.desktop-decorations span:nth-child(5) {
+    top: 65%;
+    left: 18%;
+}
+
+.desktop-decorations span:nth-child(6) {
+    top: 78%;
+    right: 13%;
+    color: #ef8ab9;
+}
+
+.desktop-decorations span:nth-child(7) {
+    top: 85%;
+    left: 43%;
+}
+
+.desktop-decorations span:nth-child(8) {
+    top: 53%;
+    right: 9%;
+}
+
+.desktop-decorations span:nth-child(9) {
+    top: 30%;
+    right: 28%;
+}
+
+.desktop-decorations span:nth-child(10) {
+    top: 70%;
+    left: 70%;
+}
+
+.desktop-decorations span:nth-child(11) {
+    top: 90%;
+    right: 35%;
+}
+
+.desktop-decorations span:nth-child(12) {
+    top: 45%;
+    left: 55%;
+}
+
+.desktop-decorations span:nth-child(13) {
+    top: 18%;
+    left: 28%;
+}
+
+.desktop-decorations span:nth-child(14) {
+    top: 58%;
+    left: 36%;
+}
+
+.desktop-decorations span:nth-child(15) {
+    top: 88%;
+    right: 12%;
+}
+
+.desktop-decorations span:nth-child(16) {
+    top: 35%;
+    right: 5%;
+}
+
+
+/* =========================================
+   DESKTOP HEADING
+========================================= */
+
+.desktop-heading {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin: 0 auto 15px;
+}
+
+.desktop-eyebrow {
+    margin: 0 0 8px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #986b91;
+}
+
+.desktop-heading h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: clamp(28px, 4vw, 42px);
+    letter-spacing: 4px;
+    color: var(--dark-plum);
+    text-shadow: 2px 2px 0 #ffffff;
+}
+
+.desktop-heading>p:last-child {
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   MAIN DESKTOP LAYOUT
+========================================= */
+
+.desktop-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(130px, 1fr) 250px minmax(130px, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 28px;
+    width: 100%;
+    max-width: 1050px;
+    margin: 10px auto 25px;
+}
+
+/* Icon columns */
+
+.icon-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    width: 100%;
+}
+
+/* Desktop icons */
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 105px;
+    min-height: 100px;
+    padding: 10px 6px;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    background: linear-gradient(145deg, #fff9fc, #f2e7f9);
+    box-shadow:
+        0 5px 12px rgba(128, 65, 130, 0.18),
+        inset 0 2px 5px rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.desktop-icon:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 8px 18px rgba(128, 65, 130, 0.25);
+}
+
+.desktop-icon .icon-art {
+    display: block;
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: drop-shadow(2px 3px 1px rgba(0, 0, 0, 0.15));
+}
+
+.desktop-icon .icon-label {
+    color: #713b79;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   CENTRAL POLAROID
+========================================= */
+
+.polaroid {
+    position: relative;
+    width: 250px;
+    max-width: 100%;
+    padding: 12px 12px 25px;
+    background: #fffdf8;
+    border: 1px solid #eadde5;
+    box-shadow:
+        0 8px 20px rgba(82, 48, 75, 0.2),
+        3px 4px 0 rgba(255, 255, 255, 0.7);
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease;
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.polaroid-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #f2e9ef;
+}
+
+.polaroid-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.polaroid-caption {
+    text-align: center;
+    padding-top: 14px;
+}
+
+.polaroid-caption h2 {
+    margin: 0;
+    font-family: "Brush Script MT", cursive;
+    font-size: 25px;
+    font-weight: normal;
+    color: #765271;
+}
+
+.polaroid-caption p {
+    margin: 6px 0 0;
+    font-size: 10px;
+    color: #9c7c99;
+}
+
+.polaroid-stamp {
+    position: absolute;
+    top: -10px;
+    right: -9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f5d7e8;
+    color: #b45d96;
+    transform: rotate(12deg);
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+
+/* =========================================
+   CONTENT WINDOWS
+========================================= */
+
+.content-window {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    display: none;
+    width: min(460px, 90vw);
+    max-height: 70vh;
+    overflow: hidden;
+    border: 2px solid var(--window-border);
+    border-radius: 9px;
+    background: var(--cream);
+    box-shadow:
+        8px 9px 0 rgba(91, 49, 89, 0.15),
+        0 12px 30px rgba(91, 49, 89, 0.2);
+    z-index: 10;
+    transform: translateX(-50%);
+}
+
+.content-window.active {
+    display: block;
+}
+
+.content-window.maximized {
+    position: fixed;
+    inset: 45px 20px 65px;
+    width: auto;
+    max-height: none;
+    transform: none;
+}
+
+.window-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.window-controls button {
+    width: 23px;
+    height: 22px;
+    padding: 0;
+    border: 1px solid #c18eb4;
+    border-radius: 4px;
+    background: #fff5fa;
+    color: #754875;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.window-controls button:hover {
+    background: #f3d4e6;
+}
+
+.window-content {
+    max-height: calc(70vh - 40px);
+    padding: 22px;
+    overflow-y: auto;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.content-window.maximized .window-content {
+    max-height: calc(100vh - 130px);
+}
+
+.window-kicker {
+    margin: 0 0 8px;
+    color: #b079a7;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.window-content h2 {
+    margin: 0 0 15px;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    color: var(--dark-plum);
+}
+
+.window-content h3 {
+    margin: 0 0 7px;
+    font-size: 15px;
+    color: #85547f;
+}
+
+.window-content p {
+    margin-top: 8px;
+}
+
+.info-card {
+    margin: 12px 0;
+    padding: 14px;
+    border: 1px solid #ead2e3;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #fff8fc, #f5effb);
+}
+
+.info-card p {
+    margin: 5px 0;
+}
+
+.resume-link {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 16px;
+    border: 1px solid #c18eb4;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #f6d8e9, #e9def8);
+    color: #69466c;
+}
+
+.small-note {
+    font-size: 11px;
+    color: #9b7b97;
+}
+
+
+/* =========================================
+   TASKBAR
+========================================= */
+
+.taskbar {
+    position: fixed;
+    z-index: 500;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    height: 48px;
+    padding: 5px 12px;
+    border-top: 2px solid #d5a9c9;
+    background: rgba(255, 248, 253, 0.95);
+    box-shadow: 0 -3px 12px rgba(90, 50, 90, 0.1);
+    backdrop-filter: blur(8px);
+}
+
+#start-button {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border: 1px solid #c18eb4;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #f7d8e9, #e8dcf8);
+    color: #70466f;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#open-windows {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+}
+
+.taskbar-window,
+.open-window-button {
+    max-width: 150px;
+    padding: 7px 12px;
+    overflow: hidden;
+    border: 1px solid #d7b1d0;
+    border-radius: 5px;
+    background: #fff5fb;
+    color: #70466f;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#clock {
+    flex-shrink: 0;
+    padding: 0 8px;
+    color: #70466f;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) and (min-width: 701px) {
+
+    #desktop {
+        padding: 20px 15px 65px;
+    }
+
+    .desktop-layout {
+        grid-template-columns: minmax(110px, 1fr) 220px minmax(110px, 1fr);
+        gap: 12px;
+    }
+
+    .polaroid {
+        width: 220px;
+    }
+
+    .desktop-icon {
+        width: 95px;
+        min-height: 90px;
+    }
+
+    .desktop-icon .icon-art {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    #desktop {
+        min-height: 100vh;
+        padding: 18px 14px 65px;
+        overflow-y: auto;
+    }
+
+    .desktop-heading {
+        margin-bottom: 18px;
+    }
+
+    .desktop-eyebrow {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .desktop-heading h1 {
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+
+    .desktop-heading>p:last-child {
+        font-size: 12px;
+    }
+
+    .desktop-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .polaroid {
+        order: 0;
+        width: min(200px, 65%);
+        margin: 0 auto;
+    }
+
+    .icon-column {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-items: center;
+        gap: 10px;
+        width: min(350px, 100%);
+    }
+
+    .icon-column:first-child {
+        order: 1;
+    }
+
+    .icon-column:last-child {
+        order: 2;
+    }
+
+    .desktop-icon {
+        width: 100px;
+        min-height: 92px;
+    }
+
+    .desktop-icon .icon-art {
+        width: 40px;
+        height: 40px;
+    }
+
+    .desktop-icon .icon-label {
+        font-size: 9px;
+    }
+
+    .content-window {
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        width: calc(100% - 24px);
+        max-height: 76vh;
+        transform: translateX(-50%);
+    }
+
+    .window-content {
+        max-height: calc(76vh - 40px);
+        padding: 16px;
+    }
+
+    .content-window.maximized {
+        inset: 10px 8px 58px;
+    }
+
+    .content-window.maximized .window-content {
+        max-height: calc(100vh - 115px);
+    }
+
+    .taskbar {
+        height: 45px;
+        gap: 6px;
+        padding: 4px 6px;
+    }
+
+    #start-button {
+        padding: 7px 9px;
+        font-size: 10px;
+    }
+
+    #clock {
+        padding: 0 4px;
+        font-size: 10px;
+    }
+
+    .taskbar-window,
+    .open-window-button {
+        max-width: 100px;
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .desktop-heading h1 {
+        font-size: 25px;
+    }
+
+    .polaroid {
+        width: min(185px, 65%);
+    }
+
+    .desktop-icon {
+        width: 90px;
+        min-height: 85px;
+    }
+
+    .desktop-icon .icon-art {
+        width: 36px;
+        height: 36px;
+    }
+
+    .window-header {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================
+   WINDOW OVERLAPPING POSITIONS
+========================================= */
+
+@media (min-width: 701px) {
+
+    .content-window {
+        position: absolute;
+        transform: none;
+    }
+
+    #profile {
+        top: 16%;
+        left: 23%;
+    }
+
+    #education {
+        top: 12%;
+        left: 36%;
+    }
+
+    #skills {
+        top: 22%;
+        left: 29%;
+    }
+
+    #projects {
+        top: 18%;
+        left: 42%;
+    }
+
+    #experience {
+        top: 27%;
+        left: 20%;
+    }
+
+    #resume {
+        top: 25%;
+        left: 39%;
+    }
+
+    #contact {
+        top: 32%;
+        left: 31%;
+    }
+}
+
+/* MOBILE WINDOW IMPROVEMENTS */
+@media (max-width: 700px) {
+
+    .content-window {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+
+        width: 92vw !important;
+        max-width: 380px !important;
+        max-height: 75vh !important;
+
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    .window-content {
+        max-height: 65vh;
+        overflow-y: auto;
+    }
+
+    .desktop-layout {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .polaroid {
+        width: 220px;
+        max-width: 85vw;
+    }
+}
